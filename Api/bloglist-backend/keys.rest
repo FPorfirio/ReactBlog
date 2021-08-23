@@ -1,0 +1,2 @@
+GET  http://localhost:3001/api/.well-known/jwks.json
+Content-Type: application/json
