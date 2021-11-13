@@ -74,7 +74,7 @@ const errorHandler = (error, request, response, next) => {
 		return response.status(401).json({ error: error.message })
 	}
 
-	next(error)
+return response.status(500).json({ error: 'We couldn\'t process your request, please try again later' })
 }
 
 module.exports = {

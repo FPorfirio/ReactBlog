@@ -1,19 +1,27 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const loginRouter = require('express').Router()
-const User = require('../models/user')
-const Session = require('../models/session')
-const Key = require('../models/Keys')
+const User = require('../models/user/user')
+const Session = require('../models/session/session')
+const {ajv} = require("../models/validationSchemas.js")
+const Key = require('../models/session/keys')
 const mongoose = require('mongoose')
 const { nanoid } = require('nanoid')
 const generateJWK = require('../utils/generateJWK')
 const generateRsa = require('../utils/generateRsa')
 
+
 loginRouter.post('/', async (request, response, next) => {
 	const body = request.body
-    
-	const user = await User.findOne({username: body.username})
+  const validate = ajv.getSchema('validateLogin_POST')
 
+	if(!validate) {
+		return response.status(401).json({
+			error: 'invalid username or password'
+		})
+	}
+
+	const user = await User.findOne({username: body.username})
 	const passwordCorrect = user === null
     ? false
     : await bcrypt.compare(body.password, user.passwordHash) 
@@ -24,13 +32,14 @@ loginRouter.post('/', async (request, response, next) => {
 		})
 	}
 
-	const userInfo = {name: user.username}
-	
+	const userInfo = {
+		name: user.username,
+		id: user._id
+	}
 	const session = new Session({
 		UUID: user._id
 	})
 	const savedSession =  await session.save()
-
 	const refreshTokenOpts = {
 		issuer: "http://localhost:3001/login",
 		audience: "http://localhost:3001/authorization",

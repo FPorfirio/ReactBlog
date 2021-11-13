@@ -1,8 +1,14 @@
-POST http://localhost:3001/api/comments
+POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkRtYkJ5TGhreGtNMzBQUWExRXBvbiJ9.eyJpYXQiOjE2MjQ3NzYzMTAsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS8iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEvbG9naW4iLCJzdWIiOiI2MDkzYTU2MDczZWU4NzE1MzRjODBkNDgifQ.XY8yLRKPdO_sJvxMYr-YTQpkAom_Y6_9UUyibvcPYhQR8aUb2c6lE3zqSONohc8uvpcRQg3HG-9yeSS0oIfKn8qIAqfpUTBxTylEo3oGS9iNcFDXD2IJLEaTz4PEXV1iGyAibgIHbYNRmydhH4C5Pv7OEiGyccIkS8FieotDlxgDtgxHa03-1ACxnAtvb1nnnelQMT9VqwHo7XB5bf6VEXgwfhGcI2z7IOq0ySzQRjIIiMMsZoC9xER5ZIYfxIVj2c_r9OvM8E2469pMmHyzsOYkQrcfoTOKJ44e4ET0wkSq0bvm5cBUCn6vmVECSnb-yTJylGV-NI-ggrFAFYHxuQ
+Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkdUb0tRV1dTQWFZcENLZ25YYnA5SSJ9.eyJpYXQiOjE2MzYzNTgzMzksImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS8iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEvbG9naW4iLCJzdWIiOiI2MTg0ZThiMDFkOTY2MzE1YjRjZTg1OTQifQ.lrbmuODRRWpc8rEeH0Fsf3Mh6Hv-rOqindR4US7rnMcCABM8pP7OzdsGUDCb0zOgZwvtA2KZIhUWEqtDAzLWug-TSYTtxzRLqNNhAcfbDROUH3qnKz2DB_GG8C_8qgXF_0ozXthwtFFHQkJ45TfC7Q7UR0Z7zYWpYvNEMToKxbROU73MWDgYYRb6wVvxbO6msBtXahIrfdgVS2f8kE4xP7U5iUtWZ6ggyhP3HiRiyurlb6BTPF0k89iVKHRPJTnJgWca4i8OsE8u1nkAsiUEf6kJJ7WsMU0BDGzbgpTLgYYdCeFzZY-2dPIJS5La88sKc_x6cs22jGfBtXSuI732DQ
 
 {
-	"content": "quecomssmentpapaa",
-	"blogId": "60f68f17ad097f1250ecc01f"
+	"title": "monte",
+	"content": "shitfuckkkkkkkkkkkkkkkkkkkkkkkkkkk",
+	"description": "quecagadaaaa",
+	"imgUrl": {
+		"url": "https://res.cloudinary.com/dxpdibonp/image/upload/asda",
+		"public_id": "asdasdas"
+	},
+	"tags": ["fuck", "shit"]
 }

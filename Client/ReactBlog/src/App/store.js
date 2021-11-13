@@ -3,7 +3,7 @@ import rootReducer from './rootReducer'
 import { injectStore } from '../services/blogs'
 
 const store = configureStore({
-	reducer: rootReducer
+  reducer: rootReducer,
 })
 injectStore(store)
 export default store

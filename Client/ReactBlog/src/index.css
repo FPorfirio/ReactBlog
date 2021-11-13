@@ -1,27 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @import url('https://fonts.googleapis.com/css2?family=Arimo:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300&display=swap');
 
- .error {
-    background: grey;
-    height: 200;
-    width: 100%;
-    color: red;
-    font-size: 20;
-    border-radius: 25
-  }
+.menuProfile {
+  background: linear-gradient(
+    to bottom,
+    #4b5563 0%,
+    #4b5563 61%,
+    #0095bd 61%,
+    #0095bd 100%
+  );
+}
+.menuArrowIcon {
+  background: coral;
+}
+
+.svgLogo {
+  transform-box: fill-box;
+  transform-origin: left top;
+}
+
+.error {
+  background: grey;
+  height: 200;
+  width: 100%;
+  color: red;
+  font-size: 20;
+  border-radius: 25;
+}
 
 .success {
-    background: grey;
-    color: green;
-    font-size: 20;
-    border-radius: 25
-  }
+  background: grey;
+  color: green;
+  font-size: 20;
+  border-radius: 25;
+}
 
-.what{
-  background: purple
+.what {
+  background: purple;
+}
+
+.path {
+  animation: draw 5s infinite;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+}
+
+.blogCard {
+  grid-template-columns: 50% 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'title img'
+    'description img'
+    'badges img';
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+@media (max-width: 480px) {
+  .blogCard {
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'img img'
+      'title title'
+      'description description'
+      'badges badges';
+    grid-auto-rows: minmax(0, 1fr);
+  }
+}
+
+.blogCard__img {
+  grid-area: img;
+}
+
+.blogCard__title {
+  grid-area: 'title';
+}
+
+.blogCard__description {
+  grid-area: 'description';
+}
+
+.blogCard__badges {
+  grid-area: 'badges';
+}
+
+.navBar__link:hover {
+  text-decoration: 'none';
+  color: '#b1c9f0';
+  background: purple;
+}
+@keyframes draw {
+  0% {
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 1;
+  }
 }

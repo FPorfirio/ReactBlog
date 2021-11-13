@@ -1,7 +1,8 @@
 const commentRouter = require('express').Router()
-const Blog = require('../models/blog')
-const User = require('../models/user')
-const Comment = require('../models/comment')
+const Blog = require('../models/blog/blog')
+const User = require('../models/user/user')
+const Comment = require('../models/comment/comment')
+const {ajv} = require("../models/validationSchemas.js")
 const middleware = require('../utils/middleware')
 const ObjectId = require('mongoose').Types.ObjectId
 
@@ -35,11 +36,12 @@ commentRouter.get('/', async (request, response) => {
 commentRouter.post('/', middleware.authenticator, async (request, response) => {  
     const body = request.body
     const token = request.token
-    console.log(body)
-    if(!body.content || !body.blogId) {
-        return response.status(400).end()
-    }
-    console.log('safooo')
+    const validate = ajv.getSchema('validateComment_POST')
+    
+    if(!validate(body)){
+        response.status(400).end()
+    } 
+
     const userQuery = User.findById(token.sub).exec()
     const blogQuery = Blog.findById(body.blogId).exec()
     const [user, blog] = await Promise.all([userQuery, blogQuery])
