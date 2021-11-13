@@ -1,9 +1,9 @@
-const keysRouter = require('express').Router()
-const Key = require('../models/session/keys')
+const keysRouter = require("express").Router();
+const Key = require("../models/Session/keys");
 
-keysRouter.get('/', async (request, response, next) => {
-    const keys = await Key.find({})
-    response.status(201).json({keys})
-})
+keysRouter.get("/", async (request, response, next) => {
+  const keys = await Key.find({});
+  response.status(201).json({ keys });
+});
 
-module.exports = keysRouter
+module.exports = keysRouter;

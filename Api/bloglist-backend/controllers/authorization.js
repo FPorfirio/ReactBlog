@@ -3,8 +3,8 @@ const { nanoid } = require("nanoid");
 const config = require("../utils/config");
 const jwt = require("jsonwebtoken");
 const authRouter = require("express").Router();
-const Session = require("../models/session/session");
-const publicKeys = require("../models/session/keys");
+const Session = require("../models/Session/session");
+const publicKeys = require("../models/Session/keys");
 const generateJWK = require("../utils/generateJWK");
 const generateRsa = require("../utils/generateRsa");
 

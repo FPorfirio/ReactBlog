@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const loginRouter = require("express").Router();
-const User = require("../models/user/user");
-const Session = require("../models/session/session");
+const User = require("../models/User/user");
+const Session = require("../models/Session/session");
+const Key = require("../models/Session/keys");
 const { ajv } = require("../models/validationSchemas.js");
-const Key = require("../models/session/keys");
 const config = require("../utils/config");
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");

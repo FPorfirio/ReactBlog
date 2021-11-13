@@ -1,6 +1,6 @@
 const blogRouter = require("express").Router();
-const Blog = require("../models/blog/blog");
-const User = require("../models/user/user");
+const Blog = require("../models/Blog/blog");
+const User = require("../models/User/user");
 const { ajv } = require("../models/validationSchemas.js");
 const middleware = require("../utils/middleware");
 
