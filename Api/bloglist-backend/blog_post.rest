@@ -1,14 +1,3 @@
-POST http://localhost:3001/api/blogs
+GET http://localhost:3001/authorization
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkdUb0tRV1dTQWFZcENLZ25YYnA5SSJ9.eyJpYXQiOjE2MzYzNTgzMzksImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS8iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEvbG9naW4iLCJzdWIiOiI2MTg0ZThiMDFkOTY2MzE1YjRjZTg1OTQifQ.lrbmuODRRWpc8rEeH0Fsf3Mh6Hv-rOqindR4US7rnMcCABM8pP7OzdsGUDCb0zOgZwvtA2KZIhUWEqtDAzLWug-TSYTtxzRLqNNhAcfbDROUH3qnKz2DB_GG8C_8qgXF_0ozXthwtFFHQkJ45TfC7Q7UR0Z7zYWpYvNEMToKxbROU73MWDgYYRb6wVvxbO6msBtXahIrfdgVS2f8kE4xP7U5iUtWZ6ggyhP3HiRiyurlb6BTPF0k89iVKHRPJTnJgWca4i8OsE8u1nkAsiUEf6kJJ7WsMU0BDGzbgpTLgYYdCeFzZY-2dPIJS5La88sKc_x6cs22jGfBtXSuI732DQ
-
-{
-	"title": "monte",
-	"content": "shitfuckkkkkkkkkkkkkkkkkkkkkkkkkkk",
-	"description": "quecagadaaaa",
-	"imgUrl": {
-		"url": "https://res.cloudinary.com/dxpdibonp/image/upload/asda",
-		"public_id": "asdasdas"
-	},
-	"tags": ["fuck", "shit"]
-}
+Cookie: refreshToken = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzY3OTAwNDQsImV4cCI6MTYzNzM5NDg0NCwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAxL2F1dGhvcml6YXRpb24iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEvbG9naW4iLCJqdGkiOiI2MThmNmYxY2YwNjAwMDA0ODQ1ZjI3YWMifQ.IRhEGLheTsQ8qlr4E3NYO6glOkNBSuWkRpZGEgCRoLA

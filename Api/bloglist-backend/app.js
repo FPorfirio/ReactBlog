@@ -4,7 +4,6 @@ require("express-async-errors");
 const logger = require("./utils/logger");
 var cookieParser = require("cookie-parser");
 const app = express();
-
 const cors = require("cors");
 const config = require("./utils/config");
 const blogRouter = require("./controllers/posts");
@@ -31,20 +30,19 @@ mongoose
   });
 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(config.CORS_OPTS));
 app.use(express.json());
 app.use(helmet());
 app.use(middleware.requestLogger);
 
 app.use("/api/blogs", blogRouter);
-//app.use("/api/users", usersRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/.well-known/jwks.json", keysRouter);
 app.use("/login", loginRouter);
-app.use("/authorization/", authRouter);
+app.use("/authorization", authRouter);
 
 if (process.env.NODE_ENV === "test") {
-  console.log("fuuuuck");
   const testingRouter = require("./controllers/testing");
   app.use("/api/testing", testingRouter);
 }

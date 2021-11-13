@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import { useHistory } from 'react-router-dom'
-import { LoginModal } from '../../features/auth/LoginModal'
+import { LoginModal } from '../../features/auth/login'
 
 const LoginBox = () => {
   return (

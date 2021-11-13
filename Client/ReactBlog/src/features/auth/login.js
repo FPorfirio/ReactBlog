@@ -1,2 +1,2 @@
 export { LoginForm } from './loginForm/LoginForm'
-export { LoginView } from './loginView'
+export { LoginModal } from './LoginModal'

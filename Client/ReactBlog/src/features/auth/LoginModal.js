@@ -6,7 +6,7 @@ import {
   Button,
   useDisclosure,
 } from '@chakra-ui/react'
-import { LoginView } from './loginView'
+import { LoginView } from './LoginView'
 
 export const LoginModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

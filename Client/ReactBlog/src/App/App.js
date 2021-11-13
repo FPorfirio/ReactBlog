@@ -28,9 +28,6 @@ const App = () => {
       <Route path="/newpost">
         <PostForm />
       </Route>
-      <Route path="/login">
-        <LoginView />
-      </Route>
       <Route>
         <NotFound />
       </Route>

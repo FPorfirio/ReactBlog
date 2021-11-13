@@ -1,21 +1,20 @@
-const UserRouter = require('express').Router()
-const User = require('../models/user/user')
-const bcrypt = require('bcrypt')
+const UserRouter = require("express").Router();
+const User = require("../models/user/user");
+const bcrypt = require("bcrypt");
 
-UserRouter.get('/', async (request, response, next) => {
-	const users = await User.find({})
-		.populate('posts')
+UserRouter.get("/", async (request, response, next) => {
+  const users = await User.find({}).populate("posts");
 
-	response.json(users)
-})
+  response.json(users);
+});
 
-UserRouter.get('/:id', async (request, response, next) => {
-	const id = request.params.id
-	const user = await User.findById(id)
-	response.json(user)
-})
+UserRouter.get("/:id", async (request, response, next) => {
+  const id = request.params.id;
+  const user = await User.findById(id);
+  response.json(user);
+});
 
-UserRouter.post('/', async (request, response, next) => {
+/*UserRouter.post('/', async (request, response, next) => {
 	const body = request.body
 
 	const validUsername = body.username.length >= 3 ? body.username : false
@@ -42,6 +41,6 @@ UserRouter.post('/', async (request, response, next) => {
 	const savedUser = await user.save()
     
 	response.status(201).json(savedUser)
-})
+})*/
 
-module.exports = UserRouter
+module.exports = UserRouter;

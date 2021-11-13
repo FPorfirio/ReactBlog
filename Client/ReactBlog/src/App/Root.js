@@ -12,7 +12,7 @@ const Root = () => {
     <Provider store={store}>
       <ChakraProvider theme={Theme}>
         <ErrorBoundary>
-          <Router>
+          <Router basename="/ReactBlog">
             <ErrorBoundary>
               <App />
             </ErrorBoundary>
