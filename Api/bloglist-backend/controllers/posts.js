@@ -3,7 +3,6 @@ const Blog = require("../models/blog/blog");
 const User = require("../models/user/user");
 const { ajv } = require("../models/validationSchemas.js");
 const middleware = require("../utils/middleware");
-const BASEURL = process.env.BASEURL;
 
 blogRouter.get("/", async (request, response, next) => {
   const userId = request.query.userId;
