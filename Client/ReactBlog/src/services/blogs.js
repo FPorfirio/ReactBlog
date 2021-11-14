@@ -29,7 +29,7 @@ switch (process.env.NODE_ENV) {
 }
 
 const instance = axios.create({
-  baseUrl: `${baseUrl}/api/blogs`,
+  baseURL: `${baseUrl}/api/blogs`,
 })
 
 instance.interceptors.request.use((config) => {
@@ -45,7 +45,7 @@ instance.interceptors.request.use((config) => {
 })
 
 const getAll = async () => {
-  const request = await instance.get(baseUrl)
+  const request = await instance.get()
   return request.data
 }
 
