@@ -19,7 +19,7 @@ export const callCancel = () => {
 }
 
 let baseUrl
-
+console.log(process.env.NODE_ENV)
 switch (process.env.NODE_ENV) {
   case 'production':
     baseUrl = 'https://reactblog-backend.herokuapp.com'
