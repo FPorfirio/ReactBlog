@@ -18,18 +18,18 @@ export const callCancel = () => {
   }
 }
 
-let baseUrl = '/api/blogs'
+let baseUrl
 
 switch (process.env.NODE_ENV) {
   case 'production':
     baseUrl = 'https://reactblog-backend.herokuapp.com'
     break
   default:
-    url = '/api/blogs'
+    baseUrl = ''
 }
 
 const instance = axios.create({
-  baseUrl: baseUrl,
+  baseUrl: `${baseUrl}/api/blogs`,
 })
 
 instance.interceptors.request.use((config) => {
