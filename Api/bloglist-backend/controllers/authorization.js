@@ -19,16 +19,20 @@ authRouter.get("/", async (req, response, next) => {
     audience: "http://localhost:3001/authorization",
   });
   //can chanche validate to oldSession
-  console.log(decodedToken);
   const user = await Session.findById(decodedToken.jti);
   console.log(user);
 
   if (user) {
     const oldSession = await Session.findByIdAndDelete(decodedToken.jti);
-    console.log(oldSession);
     const newSession = new Session({
       UUID: oldSession.UUID,
+      username: oldSession.username,
     });
+
+    const userInfo = {
+      name: user.username,
+      id: user.UUID,
+    };
 
     const savedSession = await newSession.save();
 
@@ -61,7 +65,7 @@ authRouter.get("/", async (req, response, next) => {
       audience: "http://localhost:3001/",
       subject: newSession.UUID.toString(),
       keyid: keyId,
-      expiresIn: "5m",
+      expiresIn: "15m",
     };
     const accessToken = jwt.sign(
       accessTokenBody,
@@ -72,7 +76,7 @@ authRouter.get("/", async (req, response, next) => {
     response
       .cookie("refreshToken", refreshToken, { httpOnly: true })
       .status(200)
-      .send({ accessToken });
+      .send({ accessToken, userInfo });
   } else {
     response.status(401).json({ error: "Unauthorized" });
   }

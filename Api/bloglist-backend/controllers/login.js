@@ -37,8 +37,10 @@ loginRouter.post("/", async (request, response, next) => {
     name: user.username,
     id: user._id,
   };
+
   const session = new Session({
     UUID: user._id,
+    username: user.username,
   });
   const savedSession = await session.save();
   const refreshTokenOpts = {
