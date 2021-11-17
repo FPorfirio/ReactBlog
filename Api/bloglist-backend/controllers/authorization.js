@@ -74,7 +74,11 @@ authRouter.get("/", async (req, response, next) => {
     );
 
     response
-      .cookie("refreshToken", refreshToken, { httpOnly: true })
+      .cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
       .status(200)
       .send({ accessToken, userInfo });
   } else {

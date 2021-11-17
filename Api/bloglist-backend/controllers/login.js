@@ -77,7 +77,11 @@ loginRouter.post("/", async (request, response, next) => {
   const accessToken = jwt.sign(accessTokenBody, privateKey, accessTokenOptions);
 
   response
-    .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true })
+    .cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    })
     .status(200)
     .send({ accessToken, userInfo });
 });
