@@ -7,6 +7,7 @@ import {
   isRejected,
 } from '@reduxjs/toolkit'
 import blogService from '../../services/blogs'
+import commentService from '../../services/comments'
 import { callCancel } from '../../services/blogs'
 
 //cancel axios request
@@ -48,7 +49,6 @@ export const updateBlog = createAsyncThunk(
   'blogs/editBlog',
   async (updatedBlog) => {
     const response = await blogService.update(updatedBlog)
-    console.log(response)
     const formatedResponse = {
       id: response.id,
       changes: response,
@@ -58,9 +58,7 @@ export const updateBlog = createAsyncThunk(
 )
 
 export const deleteBlog = createAsyncThunk('blogs/deleteBlog', async (id) => {
-  console.log('borrandoo')
   const response = await blogService.deletePost(id)
-  console.log(response)
   return response
 })
 
@@ -70,7 +68,7 @@ export const fetchComments = createAsyncThunk(
     signal.addEventListener('abort', () => {
       axiosCancel()
     })
-    const response = await blogService.getBlogComments(blogId)
+    const response = await commentService.getBlogComments(blogId)
     return response
   }
 )
@@ -78,7 +76,7 @@ export const fetchComments = createAsyncThunk(
 export const addComments = createAsyncThunk(
   'blogs/addComments',
   async (newComment) => {
-    const response = await blogService.addBlogComment(newComment)
+    const response = await commentService.addBlogComment(newComment)
     return response
   }
 )
@@ -107,7 +105,6 @@ const blogSlice = createSlice({
         } else {
           blogAdapter.upsertMany(state, action.payload)
         }
-        console.log(action)
         state.status = 'succeded'
       })
       .addCase(addBlog.fulfilled, (state, action) => {
@@ -135,7 +132,6 @@ const blogSlice = createSlice({
       .addMatcher(
         isRejected(fetchBlogs, addBlog, updateBlog, deleteBlog),
         (state, action) => {
-          console.log(action)
           state.status = 'failed'
           state.error = action.error.message
         }

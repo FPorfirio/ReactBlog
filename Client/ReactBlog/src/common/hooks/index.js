@@ -1,6 +1,9 @@
 import { useReducer, useState, useRef, useEffect, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
+import { getToken } from '../../features/auth/authSlice'
+import { selectIsAuthenticated } from '../../features/auth/authSlice'
+
 export const useField = ({ type, validator }) => {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
@@ -34,6 +37,34 @@ export const useField = ({ type, validator }) => {
   }
 }
 
+//check authCache
+export const useRefreshToken = () => {
+  const dispatch = useDispatch()
+  const interval = useRef()
+  const authCache = localStorage.getItem('isAuth')
+  const isAuth = useSelector(selectIsAuthenticated)
+  console.log(isAuth)
+  console.log(authCache)
+  useEffect(() => {
+    if (authCache) {
+      dispatch(getToken())
+    }
+  }, [])
+
+  useEffect(() => {
+    let refreshInterval
+    if (isAuth) {
+      refreshInterval = setInterval(() => {
+        dispatch(getToken())
+      }, 1000 * 60 * 14)
+      return
+    }
+    if (refreshInterval) {
+      clearInterval(refreshInterval)
+    }
+  }, [isAuth])
+}
+
 export const useHookWithRefCallback = () => {
   const ref = useRef(null)
   const setRef = useCallback((node) => {
@@ -52,36 +83,6 @@ export const useHookWithRefCallback = () => {
 
   return [setRef]
 }
-
-/*export const useAsync = (promise) => {
-	const dispatch = useDispatch()
-	const [state, setState] = useState({
-		data: null,
-		error: null,
-		isLoading: false
-	})
-	const runPromise = async () => {
-		setState({
-			data: null,
-			error: null,
-			isLoading: true
-		})
-		try {
-			const response = await dispatch(promise())
-			setState({
-				data: response.payload,
-				error: null,
-				isLoading: false
-			})
-		} catch(err) {
-			setState({
-				data: null,
-				error: err,
-				isLoading: false
-			})
-		}
-	}
-	*/
 
 export const useAsync = (promise = null) => {
   const dispatch = useDispatch()

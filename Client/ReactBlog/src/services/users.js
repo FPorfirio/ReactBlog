@@ -1,18 +1,19 @@
 import axios from 'axios'
-const baseUrl = '/api/users'
+import { config } from './config'
+const { baseUrl } = config
 
 const getAll = async () => {
-  const response = await axios.get(baseUrl)
+  const response = await axios.get(`${baseUrl}/api/users`)
   return response.data
 }
 
 const create = async (newUser) => {
-  const response = await axios.post(baseUrl, newUser)
+  const response = await axios.post(`${baseUrl}/api/users`, newUser)
   return response.data
 }
 
 const getUser = async (id) => {
-  const response = await axios.get(`${baseUrl}/${id}`)
+  const response = await axios.get(`${baseUrl}/api/users/${id}`)
   return response.data
 }
 

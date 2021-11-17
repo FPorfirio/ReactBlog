@@ -1,13 +1,9 @@
 import axios from 'axios'
-let store
+import { config } from './config'
+const { baseUrl, getStore } = config
 
-export const injectStore = (_store) => {
-  store = _store
-}
-
-const cancelToken = axios.CancelToken
 let cancel
-
+const cancelToken = axios.CancelToken
 export const callCancel = () => {
   return () => {
     if (cancel !== undefined) {
@@ -18,21 +14,12 @@ export const callCancel = () => {
   }
 }
 
-let baseUrl
-console.log(process.env.NODE_ENV)
-switch (process.env.NODE_ENV) {
-  case 'production':
-    baseUrl = 'https://reactblog-backend.herokuapp.com'
-    break
-  default:
-    baseUrl = ''
-}
-
 const instance = axios.create({
-  baseURL: `${baseUrl}/api/blogs`,
+  baseURL: `${config.baseUrl}/api/blogs`,
 })
 
 instance.interceptors.request.use((config) => {
+  const store = getStore()
   const token = `bearer ${store.getState().authentication.token}`
   config.headers.post['Authorization'] = token
   config.headers.put['Authorization'] = token
@@ -50,13 +37,18 @@ const getAll = async () => {
 }
 
 const get = async (id) => {
-  const request = await axios.get(`${baseUrl}/${id}`)
+  const request = await instance.get(`${baseUrl}/${id}`)
   return request.data
 }
 
+const getBlogsByUser = async (userId) => {
+  const response = await instance.get(`${baseUrl}?userId=${userId}`)
+  return response.data
+}
+//arreglar la url
+
 const create = async (newObject) => {
-  const response = await instance.post(baseUrl, newObject)
-  console.log(response)
+  const response = await instance.post(newObject)
   return response.data
 }
 
@@ -70,33 +62,14 @@ const update = async (updatedBlog) => {
 
 const deletePost = async (id) => {
   const response = await instance.delete(`${baseUrl}/${id}`)
-  console.log(response)
   return response.data
 }
 
-const getBlogComments = async (blogId) => {
-  const response = await instance.get(`/api/comments?blogId=${blogId}`)
-  return response.data
-}
-
-const getBlogsByUser = async (userId) => {
-  const response = await instance.get(`/api/blogs?userId=${userId}`)
-  return response.data
-}
-
-const addBlogComment = async (newComment) => {
-  console.log(instance.post)
-  const response = await instance.post('/api/comments/', newComment)
-  console.log(response)
-  return response.data
-}
 export default {
   getAll,
   get,
   create,
   update,
   deletePost,
-  getBlogComments,
-  addBlogComment,
   getBlogsByUser,
 }

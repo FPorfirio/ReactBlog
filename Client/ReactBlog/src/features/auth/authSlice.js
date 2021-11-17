@@ -1,14 +1,19 @@
 import {
   createSlice,
+  createAction,
   createAsyncThunk,
   isPending,
   isRejected,
 } from '@reduxjs/toolkit'
-import { login as loginService } from '../../services/auth'
+import { login as loginService, fetchToken } from '../../services/auth'
+
+export const getToken = createAsyncThunk('getToken', async () => {
+  const response = await fetchToken()
+  return response
+})
 
 export const login = createAsyncThunk('login', async (credentials) => {
   const response = await loginService(credentials)
-  console.log(response)
   return response
 })
 
@@ -32,6 +37,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
+        localStorage.setItem('isAuth', true)
         state.status = 'success'
         state.authenticated = true
         state.token = action.payload.accessToken
@@ -40,6 +46,20 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.status = 'success'
+        state.authenticated = false
+        state.token = null
+        state.user = null
+      })
+      //arreglar api de usuario
+      .addCase(getToken.fulfilled, (state, action) => {
+        localStorage.setItem('isAuth', true)
+        state.authenticated = true
+        state.token = action.payload.accessToken
+        state.user = action.payload.userInfo
+      })
+      .addCase(getToken.rejected, (state, action) => {
+        localStorage.setItem('isAuth', false)
+        state.status = 'idle'
         state.authenticated = false
         state.token = null
         state.user = null

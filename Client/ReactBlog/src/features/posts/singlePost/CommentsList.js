@@ -24,6 +24,7 @@ export const CommentsList = ({ blogId }) => {
   const cacheComments = useSelector((state) =>
     selectBlogComments(state, blogId)
   )
+  console.log(cacheComments)
   const { isLoading, error, startFetch, isMounted } = useAsync(
     fetchComments(blogId)
   )
@@ -44,7 +45,7 @@ export const CommentsList = ({ blogId }) => {
         Comments
       </Heading>
       <StatusBox isLoading={isLoading} error={error} />
-      {cacheComments && (
+      {isFetched && (
         <ul className="flex flex-wrap flex-col gap-2 pl-2">
           {cacheComments.map((comment) => (
             <li

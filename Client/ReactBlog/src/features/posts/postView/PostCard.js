@@ -38,8 +38,10 @@ export const PostCard = ({ blog, blogImg }) => {
         Simple post explaning the stack and structure decisions in this blog
       </Text>
       <Box gridArea="badges" className="flex flex-wrap gap-3 items-center">
-        {blog.tags.map((tag) => (
-          <Tag size="lg">{tag}</Tag>
+        {blog.tags.map((tag, index) => (
+          <Tag key={`item-${index}`} size="lg">
+            {tag}
+          </Tag>
         ))}
       </Box>
     </div>

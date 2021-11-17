@@ -5,6 +5,7 @@ import { fetchBlogs, selectAllBlogs } from '../postsSlice'
 import { Cloudinary } from '@cloudinary/url-gen'
 import { Skeleton, SkeletonText } from '@chakra-ui/react'
 import { PostCard } from './PostCard'
+import { nanoid } from '@reduxjs/toolkit'
 
 const cld = new Cloudinary({
   cloud: {
@@ -40,12 +41,12 @@ const ListContent = ({ blogs }) => {
       {blogs.length != 0 && (
         <div className=" bg-main-panel mx-auto p-4">
           <ul className="flex flex-wrap gap-3 justify-center">
-            {blogs.map((blog) => {
+            {blogs.map((blog, index) => {
               const blogImg = cld.image(blog.imgUrl.public_id)
               blogImg.format('auto').quality('auto')
 
               return (
-                <li className="w-full" key={blog.id}>
+                <li key={`item-${index}`} className="w-full" key={blog.id}>
                   <PostCard blog={blog} blogImg={blogImg} />
                 </li>
               )

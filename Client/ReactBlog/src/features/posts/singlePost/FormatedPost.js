@@ -7,14 +7,14 @@ const isCodeFormat = (paragraph) => {
 export const FormattedPost = ({ post }) => {
   const paragraphs = post.split(/\r?\n/)
 
-  const formatedPost = paragraphs.map((paragraph) => {
+  const formatedPost = paragraphs.map((paragraph, index) => {
     console.log(post)
     if (isCodeFormat(paragraph)) {
       const regex = /(?:<code>)|(?:<\/code>)/gm
       const formattedParagraph = paragraph.replace(regex, '')
-      return <Code> {formattedParagraph} </Code>
+      return <Code key={`item-${index}`}> {formattedParagraph} </Code>
     }
-    return <Text>{paragraph}</Text>
+    return <Text key={`item-${index}`}>{paragraph}</Text>
   })
 
   return formatedPost

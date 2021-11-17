@@ -1,21 +1,18 @@
 import axios from 'axios'
+import { config } from './config'
+const { baseUrl } = config
 
-const loginUrl = '/login'
-const logoutUrl = 'api/logout'
-
-const fetchToken = async () => {
-  const token = await axios.get('authorization')
-  return token
+export const fetchToken = async () => {
+  const response = await axios.get('/authorization')
+  return response.data
 }
 
 export const login = async (credentials) => {
-  const response = await axios.post(loginUrl, credentials)
-  console.log(response)
+  const response = await axios.post(`${baseUrl}/login`, credentials)
   return response.data
 }
 
 export const logout = async () => {
-  const response = await axios.post(logoutUrl)
+  const response = await axios.post(`${baseUrl}/logout`)
   return response.data
 }
-export default fetchToken
