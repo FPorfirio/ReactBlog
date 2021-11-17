@@ -10,7 +10,9 @@ export const fetchToken = async () => {
 }
 
 export const login = async (credentials) => {
-  const response = await axios.post(`${baseUrl}/login`, credentials)
+  const response = await axios.post(`${baseUrl}/login`, credentials, {
+    withCredentials: true,
+  })
   return response.data
 }
 
