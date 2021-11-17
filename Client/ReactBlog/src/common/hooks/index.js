@@ -43,8 +43,7 @@ export const useRefreshToken = () => {
   const interval = useRef()
   const authCache = localStorage.getItem('isAuth')
   const isAuth = useSelector(selectIsAuthenticated)
-  console.log(isAuth)
-  console.log(authCache)
+
   useEffect(() => {
     if (authCache) {
       dispatch(getToken())

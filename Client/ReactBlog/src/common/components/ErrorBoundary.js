@@ -1,6 +1,5 @@
-import { Link as RouterLink } from 'react-router-dom'
-import { Link } from '@chakra-ui/react'
 import React from 'react'
+import { NotFound } from './NotFound'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -18,14 +17,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div className="h-screen bg-main-background">
-          <h1>Something went wrong.</h1>
-          <Link as={RouterLink} to="/">
-            Go home
-          </Link>
-        </div>
-      )
+      return <NotFound />
     }
 
     return this.props.children

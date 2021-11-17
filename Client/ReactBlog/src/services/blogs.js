@@ -48,7 +48,7 @@ const getBlogsByUser = async (userId) => {
 //arreglar la url
 
 const create = async (newObject) => {
-  const response = await instance.post(newObject)
+  const response = await instance.post('/', newObject)
   return response.data
 }
 
