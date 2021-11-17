@@ -3,7 +3,7 @@ import { config } from './config'
 const { baseUrl } = config
 
 export const fetchToken = async () => {
-  const response = await axios.get('/authorization')
+  const response = await axios.get(`${baseUrl}/authorization`)
   return response.data
 }
 
