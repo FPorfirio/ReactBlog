@@ -4,6 +4,7 @@ const PORT = process.env.PORT;
 const JWKSECRET = process.env.JWKSECRET;
 const CORS_OPTS = {
   origin: "https://fporfirio.github.io",
+  credentials: true,
 };
 
 let MONGODB_URI = process.env.MONGODB_URI;
