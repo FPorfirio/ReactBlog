@@ -1,10 +1,11 @@
 const logger = require("./logger");
 const jwt = require("jsonwebtoken");
 const jwksClient = require("jwks-rsa");
+const config = require("./config");
 
 const getKey = async (header, callback) => {
   const client = jwksClient({
-    jwksUri: "http://localhost:3001/api/.well-known/jwks.json",
+    jwksUri: `${config.BASEURL}/api/.well-known/jwks.json`,
   });
   const key = await client.getSigningKey(header.kid);
   callback(null, key.getPublicKey());
@@ -76,11 +77,9 @@ const errorHandler = (error, request, response, next) => {
   }
   console.log(request, error);
 
-  return response
-    .status(500)
-    .json({
-      error: "We couldn't process your request, please try again later",
-    });
+  return response.status(500).json({
+    error: "We couldn't process your request, please try again later",
+  });
 };
 
 module.exports = {
