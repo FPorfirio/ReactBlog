@@ -81,6 +81,7 @@ loginRouter.post("/", async (request, response, next) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      path: "/ReactBlog",
     })
     .status(200)
     .send({ accessToken, userInfo });
