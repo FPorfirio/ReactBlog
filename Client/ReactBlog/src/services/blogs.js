@@ -37,12 +37,12 @@ const getAll = async () => {
 }
 
 const get = async (id) => {
-  const request = await instance.get(`${baseUrl}/${id}`)
+  const request = await instance.get(`/${id}`)
   return request.data
 }
 
 const getBlogsByUser = async (userId) => {
-  const response = await instance.get(`${baseUrl}?userId=${userId}`)
+  const response = await instance.get(`?userId=${userId}`)
   return response.data
 }
 //arreglar la url
@@ -61,7 +61,7 @@ const update = async (updatedBlog) => {
 }
 
 const deletePost = async (id) => {
-  const response = await instance.delete(`${baseUrl}/${id}`)
+  const response = await instance.delete(`/${id}`)
   return response.data
 }
 

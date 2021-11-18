@@ -33,12 +33,12 @@ instance.interceptors.request.use((config) => {
 })
 
 const getBlogComments = async (blogId) => {
-  const response = await axios.get(`${baseUrl}/api/comments?blogId=${blogId}`)
+  const response = await instance.get(`?blogId=${blogId}`)
   return response.data
 }
 
 const addBlogComment = async (newComment) => {
-  const response = await instance.post(`${baseUrl}/api/comments/`, newComment)
+  const response = await instance.post('/', newComment)
   return response.data
 }
 

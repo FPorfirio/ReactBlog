@@ -29,7 +29,6 @@ const ListSkeleton = () => {
 }
 
 const StatusBox = ({ isLoading, error }) => {
-  console.log(isLoading)
   if (isLoading == 'loading') {
     return <ListSkeleton />
   } else if (error) {
@@ -50,7 +49,7 @@ const ListContent = ({ users }) => {
       <Td isNumeric>{user.comments.length}</Td>
     </Tr>
   ))
-  console.log(users, 'rows:', rows)
+
   return (
     <>
       {users.length && (
