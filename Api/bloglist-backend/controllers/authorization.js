@@ -19,7 +19,7 @@ authRouter.get("/", async (req, response, next) => {
     ],
     audience: "http://localhost:3001/authorization",
   });
-  //can chanche validate to oldSession
+
   const user = await Session.findById(decodedToken.jti);
   console.log(user);
 
@@ -79,11 +79,20 @@ authRouter.get("/", async (req, response, next) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        maxAge: 14 * 24 * 3600000,
       })
       .status(200)
       .send({ accessToken, userInfo });
   } else {
-    response.status(401).json({ error: "Unauthorized" });
+    response
+      .cookie("refreshToken", "", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 0,
+      })
+      .status(401)
+      .json({ error: "Unauthorized" });
   }
 });
 

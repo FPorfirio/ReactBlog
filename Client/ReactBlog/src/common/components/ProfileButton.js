@@ -1,7 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import ProfileLogo from '../../assets/man.svg'
 import ArrowIcon from '../../assets/chevron.js'
 import { Link as RouterLink } from 'react-router-dom'
+import { logout } from '../../features/auth/authSlice'
 import {
   forwardRef,
   Avatar,
@@ -41,6 +43,7 @@ const CustomButton = forwardRef((props, ref) => {
 })
 //la base del boton custom tiene que ser siempre 100
 const ProfileBox = ({ user }) => {
+  const dispatch = useDispatch()
   return (
     <div className="h-10 self-end mr-2 rounded-md shadow overflow-hidden menuProfile md:h-14 md:mr-11 md:mt-1 md:self-start">
       <Menu>
@@ -57,10 +60,12 @@ const ProfileBox = ({ user }) => {
                   Profile
                 </Link>
               </MenuItem>
-              <MenuItem>
-                <Link to="/" as={RouterLink}>
-                  Blogs
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  dispatch(logout())
+                }}
+              >
+                Logout
               </MenuItem>
             </MenuList>
           </>

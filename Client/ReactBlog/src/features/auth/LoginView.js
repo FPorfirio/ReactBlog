@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { selectStatus, selectError, login } from './authSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
 import { LoginForm } from './loginForm/LoginForm'
 import ErrorBox from '../../common/components/ErrorBox'
 import { Icon } from '@chakra-ui/react'
@@ -29,10 +28,6 @@ export const LoginView = ({ closeModal }) => {
       password: password.value,
     }
     dispatch(login(credentials))
-  }
-
-  if (status == 'success') {
-    return <Redirect to="/" />
   }
 
   return (

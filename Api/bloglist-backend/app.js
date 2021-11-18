@@ -9,6 +9,7 @@ const config = require("./utils/config");
 const blogRouter = require("./controllers/posts");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
+const logoutRouter = require("./controllers/logout");
 const commentRouter = require("./controllers/comments");
 const keysRouter = require("./controllers/publicKeys");
 const middleware = require("./utils/middleware");
@@ -40,6 +41,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/.well-known/jwks.json", keysRouter);
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/authorization", authRouter);
 
 if (process.env.NODE_ENV === "test") {

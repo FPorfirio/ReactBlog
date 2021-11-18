@@ -1,11 +1,14 @@
 import {
   createSlice,
-  createAction,
   createAsyncThunk,
   isPending,
   isRejected,
 } from '@reduxjs/toolkit'
-import { login as loginService, fetchToken } from '../../services/auth'
+import {
+  login as loginService,
+  logout as logoutService,
+  fetchToken,
+} from '../../services/auth'
 
 export const getToken = createAsyncThunk('getToken', async () => {
   const response = await fetchToken()
@@ -18,7 +21,8 @@ export const login = createAsyncThunk('login', async (credentials) => {
 })
 
 export const logout = createAsyncThunk('logout', async () => {
-  const response = await loginService.logout()
+  const response = await logoutService()
+  console.log(response)
   return response
 })
 
@@ -45,6 +49,7 @@ const authSlice = createSlice({
         state.error = null
       })
       .addCase(logout.fulfilled, (state, action) => {
+        localStorage.setItem('isAuth', false)
         state.status = 'success'
         state.authenticated = false
         state.token = null

@@ -81,7 +81,7 @@ loginRouter.post("/", async (request, response, next) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      path: "/ReactBlog",
+      maxAge: 14 * 24 * 3600000,
     })
     .status(200)
     .send({ accessToken, userInfo });

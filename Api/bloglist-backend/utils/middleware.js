@@ -75,7 +75,6 @@ const errorHandler = (error, request, response, next) => {
     console.log("porquenollegaaca?s");
     return response.status(401).json({ error: error.message });
   }
-  console.log(request, error);
 
   return response.status(500).json({
     error: "We couldn't process your request, please try again later",
