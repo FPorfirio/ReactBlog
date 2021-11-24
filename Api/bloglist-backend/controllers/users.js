@@ -14,33 +14,33 @@ UserRouter.get("/:id", async (request, response, next) => {
   response.json(user);
 });
 
-/*UserRouter.post('/', async (request, response, next) => {
-	const body = request.body
+/*UserRouter.post("/", async (request, response, next) => {
+  const body = request.body;
 
-	const validUsername = body.username.length >= 3 ? body.username : false
-	const validPassword = body.password.length >= 3 ? body.password : false
+  const validUsername = body.username.length >= 3 ? body.username : false;
+  const validPassword = body.password.length >= 3 ? body.password : false;
 
-	if(!(validUsername && validPassword)){
-		response.status(401).json({error: 'username missing or invalid'})
-	}
+  if (!(validUsername && validPassword)) {
+    response.status(401).json({ error: "username missing or invalid" });
+  }
 
-	const userDuplicate = await User.find({username: body.username})
-	if(userDuplicate.length){
-		console.log(body)
-		return response.status(400).json({error: 'username must be unique'})
-	}
-	
-	const saltRounds = 10
-	const passwordHash = await bcrypt.hash(validPassword, saltRounds)
+  const userDuplicate = await User.find({ username: body.username });
+  if (userDuplicate.length) {
+    console.log(body);
+    return response.status(400).json({ error: "username must be unique" });
+  }
 
-	const user = new User({
-		username: validUsername,
-		name: body.name,
-		passwordHash,
-	})
-	const savedUser = await user.save()
-    
-	response.status(201).json(savedUser)
-})*/
+  const saltRounds = 10;
+  const passwordHash = await bcrypt.hash(validPassword, saltRounds);
+
+  const user = new User({
+    username: validUsername,
+    name: body.name,
+    passwordHash,
+  });
+  const savedUser = await user.save();
+
+  response.status(201).json(savedUser);
+});*/
 
 module.exports = UserRouter;

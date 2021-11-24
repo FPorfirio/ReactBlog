@@ -13,8 +13,10 @@
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.4",
+    "babel-plugin-prismjs": "^2.1.0",
     "framer-motion": "^4.1.17",
     "gh-pages": "^3.2.3",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -23,7 +25,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "slate": "^0.70.0",
+    "slate-react": "^0.70.1"
   },
   "scripts": {
     "predeploy": "npm run build",

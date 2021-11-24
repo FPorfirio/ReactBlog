@@ -1,10 +1,63 @@
 const BASEURL = process.env.BASEURL;
 
+const co = {
+  content: {
+    type: "array",
+    items: [
+      {
+        type: "object",
+        properties: {
+          type: {
+            type: "string",
+          },
+          children: {
+            type: "array",
+            items: [
+              {
+                type: "object",
+                properties: {
+                  text: { type: "string" },
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
+
 const defSchema = {
   $id: BASEURL + "/api/models/blogvalidate/defSchema.json",
   definitions: {
     title: { type: "string", maxLength: 100 },
-    content: { type: "string", maxLength: 3000 },
+    content: {
+      type: "array",
+      items: [
+        {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+            },
+            children: {
+              type: "array",
+              items: [
+                {
+                  type: "object",
+                  properties: {
+                    text: { type: "string" },
+                  },
+                  required: ["text"],
+                },
+              ],
+            },
+          },
+          required: ["type", "children"],
+          additionalProperties: false,
+        },
+      ],
+    },
     imgUrl: {
       type: "object",
       properties: {

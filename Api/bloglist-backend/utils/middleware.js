@@ -5,7 +5,7 @@ const config = require("./config");
 
 const getKey = async (header, callback) => {
   const client = jwksClient({
-    jwksUri: `${config.BASEURL}/api/.well-known/jwks.json`,
+    jwksUri: `${config.BASEURL}api/.well-known/jwks.json`,
   });
   const key = await client.getSigningKey(header.kid);
   callback(null, key.getPublicKey());
@@ -72,7 +72,6 @@ const errorHandler = (error, request, response, next) => {
   } else if (error.name === "ValidationError") {
     return response.status(400).json({ error: error.message });
   } else if (error.name === "JsonWebTokenError") {
-    console.log("porquenollegaaca?s");
     return response.status(401).json({ error: error.message });
   }
 

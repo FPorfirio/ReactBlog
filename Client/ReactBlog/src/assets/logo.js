@@ -33,11 +33,11 @@ const SVGlogo = ({ className }) => {
           <text
             fill="#b1c9f0"
             strokeWidth="0"
-            x="277.26568"
+            x="343.26568"
             y="76.16871"
             id="svg_1"
             fontSize="24"
-            fontFamily=" 'AbrilFatfacedisplay=swap'"
+            fontFamily="Red Hat Display"
             filter="drop-shadow(-2px 4px 1px black)"
             textAnchor="start"
             xmlSpace="preserve"
@@ -46,7 +46,7 @@ const SVGlogo = ({ className }) => {
             stroke="#000"
             transform="matrix(1.37577 0 0 1.55724 -368.007 -63.9717)"
           >
-            El autodidacta
+            RatCode
           </text>
           <path
             filter="drop-shadow(0px 3px 1px black)"

@@ -37,7 +37,9 @@ export const PopoverBtn = ({ stateAction, Icon, buttonTxt, description }) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button leftIcon={<Icon />}>{buttonTxt}</Button>
+        <Button color="black" leftIcon={<Icon />}>
+          {buttonTxt}
+        </Button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />

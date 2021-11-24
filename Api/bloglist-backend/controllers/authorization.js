@@ -10,7 +10,6 @@ const generateRsa = require("../utils/generateRsa");
 
 authRouter.get("/", async (req, response, next) => {
   const refreshToken = req.cookies.refreshToken;
-  console.log("the cookie is", refreshToken);
   const decodedToken = jwt.verify(refreshToken, config.JWKSECRET, {
     algorithm: ["HS256"],
     issuer: [

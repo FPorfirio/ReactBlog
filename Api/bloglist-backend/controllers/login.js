@@ -62,7 +62,7 @@ loginRouter.post("/", async (request, response, next) => {
   const key = generateJWK(keyId, publicKey, modulus, exponent);
   const JWK = new Key(key);
   await JWK.save();
-  console.log(privateKey);
+
   const accessTokenBody = {
     scope: user.scopes,
   };

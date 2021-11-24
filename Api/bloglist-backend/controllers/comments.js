@@ -22,10 +22,8 @@ commentRouter.get("/", async (request, response) => {
   const comments = await Comment.find({ blog: blogId });
   console.log(comments == true);
   if (comments.length) {
-    console.log("quemierdapasaa");
     response.status(200).json(comments);
   } else {
-    console.log("lareputamadreee");
     response.status(404).end();
   }
 });

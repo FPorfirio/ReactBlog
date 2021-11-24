@@ -22,6 +22,7 @@ import { ReactComponent as PhotogaphIcon } from '../../../assets/photographIcon.
 import { ReactComponent as ArrowIcon } from '../../../assets/arrowIcon.svg'
 import { ReactComponent as TagIcon } from '../../../assets/tag.svg'
 import Navbar from '../../../common/components/navbar'
+import { SlateEditor } from './SlateEditor'
 import {
   validateTitle,
   validateContent,
@@ -33,7 +34,12 @@ const ActionBar = ({ actions }) => {
 
   return (
     <div className="flex flex-col mx-auto w-full bg-gray-300">
-      <ButtonGroup width="auto" variant="outline" colorScheme="teal">
+      <ButtonGroup
+        width="auto"
+        variant="outline"
+        colorScheme="teal"
+        color="black"
+      >
         <PopoverBtn
           Icon={TagIcon}
           stateAction={setTags}
@@ -41,6 +47,7 @@ const ActionBar = ({ actions }) => {
           buttonTxt="add Tags"
         />
         <Button
+          color="black"
           leftIcon={<PhotogaphIcon />}
           onClick={() => {
             showUploadModal()
@@ -79,7 +86,12 @@ const TagContainer = ({ tags }) => {
 
 export const PostForm = () => {
   const title = useField({ type: ' text', validator: validateTitle })
-  const content = useField({ type: ' text', validator: validateContent })
+  const [content, setContent] = useState([
+    {
+      type: 'paragraph',
+      children: [{ text: '' }],
+    },
+  ])
   const description = useField({
     type: ' text',
     validator: validateDescription,
@@ -106,9 +118,6 @@ export const PostForm = () => {
     if (!title.value.length) {
       setFormStatus(createMessage({ status: 'empty', field: 'title' }))
       return
-    } else if (!content.value.length) {
-      setFormStatus(createMessage({ status: 'empty', field: 'text' }))
-      return
     } else if (!imgUploadResult) {
       setFormStatus(createMessage({ status: 'select_error', field: 'image' }))
       return
@@ -122,7 +131,7 @@ export const PostForm = () => {
 
     const newBlog = {
       title: title.value,
-      content: content.value,
+      content: content,
       imgUrl: {
         url: imgUploadResult.secure_url,
         public_id: imgUploadResult.public_id,
@@ -137,13 +146,13 @@ export const PostForm = () => {
   return (
     <div className="min-h-screen flex flex-col overflow-hidden bg-gainsboro">
       <Navbar />
-      <div className="flex-grow flex flex-wrap flex-col p-4 mx-10 md:mx-auto min-h-full h-auto bg-gray-300 gap-1.5 pt-10 border-l border-r border-teal md:w-155">
+      <div className="flex-grow flex flex-wrap flex-col p-4 pt-8 mx-10 md:mx-auto min-h-full h-auto bg-gray-300 gap-1.5 border-l border-r border-teal md:w-155">
         <StatusBox status={formStatus} />
         <ActionBar actions={{ showUploadModal, setTags }} />
         <TagContainer tags={tags} />
         <form
           id="blogForm"
-          className="w-full flex flex-col gap-2 bg-teal rounded-md mt-5 p-2"
+          className="w-full flex-grow flex flex-col gap-2 bg-teal rounded-md mt-5 p-2"
           onSubmit={handleSubmit}
         >
           <FormControl isInvalid={title.error}>
@@ -175,8 +184,34 @@ export const PostForm = () => {
             />
             <FormErrorMessage>{description.error}</FormErrorMessage>
           </FormControl>
+          <div className="rounded-lg p-1 bg-gainsboro flex-grow">
+            <SlateEditor
+              value={content}
+              handleInput={(value) => setContent(value)}
+            />
+          </div>
+        </form>
+        <Button
+          form="blogForm"
+          mt="5"
+          leftIcon={<ArrowIcon />}
+          colorScheme="teal"
+          color="black"
+          variant="outline"
+          isLoading={isLoading}
+          loadingText="Submitting"
+          spinnerPlacement="end"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </div>
+    </div>
+  )
+}
 
-          <FormControl
+/*
+<FormControl
             display="flex"
             flexDir="column"
             height="80"
@@ -199,20 +234,4 @@ export const PostForm = () => {
             />
             <FormErrorMessage>{content.error}</FormErrorMessage>
           </FormControl>
-        </form>
-        <Button
-          form="blogForm"
-          mt="5"
-          leftIcon={<ArrowIcon />}
-          colorScheme="teal"
-          isLoading={isLoading}
-          loadingText="Submitting"
-          spinnerPlacement="end"
-          type="submit"
-        >
-          Submit
-        </Button>
-      </div>
-    </div>
-  )
-}
+*/

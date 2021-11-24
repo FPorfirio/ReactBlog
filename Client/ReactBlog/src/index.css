@@ -68,19 +68,6 @@
   grid-auto-rows: minmax(0, 1fr);
 }
 
-@media (max-width: 480px) {
-  .blogCard {
-    grid-template-columns: 50% 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      'img img'
-      'title title'
-      'description description'
-      'badges badges';
-    grid-auto-rows: minmax(0, 1fr);
-  }
-}
-
 .blogCard__img {
   grid-area: img;
 }
@@ -102,11 +89,73 @@
   color: '#b1c9f0';
   background: purple;
 }
+
+.blockquote {
+  border-left: 0.7em solid #ccc;
+  margin: 0.5rem 0.5em;
+  padding: 0.1em 0.5rem;
+  line-height: 1.2em;
+  quotes: '\201C''\201D';
+}
+
+.blockquote:before {
+  font: Georgia;
+  color: #808080;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0;
+  vertical-align: -0.41em;
+  padding: 0 0.1em 0 0.1em;
+}
+
+.blockquote:after {
+  font: Georgia;
+  color: #808080;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.3em;
+  margin-right: 0.25em;
+  vertical-align: -0.57em;
+  padding: 0 0 0 0.1em;
+}
+
+.blockquote:first-child {
+  display: absolute;
+  padding-top: 1.3em;
+}
+
+.blockquote:last-child {
+  display: absolute;
+}
+
+.hr {
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.codeBlock {
+  font-size: 20px !important;
+}
 @keyframes draw {
   0% {
   }
   100% {
     stroke-dashoffset: 0;
     stroke-opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .blogCard {
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'img img'
+      'title title'
+      'description description'
+      'badges badges';
+    grid-auto-rows: minmax(0, 1fr);
+  }
+  .codeBlock {
+    font-size: 16px !important;
   }
 }

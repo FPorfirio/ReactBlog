@@ -1,2 +1,31 @@
-DELETE http://localHost:3001/api/blogs/60d97211876a952950391d5
-Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZBbC13ZUNTSDJab3BWSnBROGZKVSJ9.eyJpYXQiOjE2MjU4ODY5NDgsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS8iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEvbG9naW4iLCJzdWIiOiI2MDkzYTU2MDczZWU4NzE1MzRjODBkNDgifQ.Ckx33-pyB4Ma_9LuMTbtCY3E8ye23_3DwAD-lQ2c0YFcSHE0jbhcWTQPs52yGZUDL0jmHtaun6usgTp5NlqJJQhApJ7RmNKrHyE6jPkIhAugssL-qfA8rgl4n15rlKSVh-jZr8SOexSKi30hNyQ5xwp1T9wKw-NQ3kT25V7rceGjhqkgmIO6VsUwFErk0EYo_f8JZDSxdVR7gZMbQY_9qNHX9IN68SNVQQWeiLkE6S9zNUZpCxqDkaN09ji7JB4EogKgtb1cYNms-VCoCwHyDGIuYNd3w1jZymKBfG4ueKji43SHy-nf4fQRkCLk0vy-lr5FCi5FYyhnHVP8jlwU3Q
+POST http://localHost:3001/api/blogs/
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im83WndnSDZualFvU0RPQ0RvVzlDMCJ9.eyJpYXQiOjE2MzczOTU0MTYsImV4cCI6MTYzNzM5NjMxNiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAxLyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS9sb2dpbiIsInN1YiI6IjYxOThhYmM5ZDNkNzgzMjIzNDQyM2EwZSJ9.cX0axlMao3P1M3ImkGJB_yJAg-H6uBtEqPgLgJXS5gWwT3npuPmYlUD1i-WXCYmfFYj_wNh8P0J8SVZEUmXyUPvEil8LRzNE7f5v59C76ocFQfn5mID29KIvXlquTXKgqvU-1N9ofxw3ikyJKEYlUpeirqTUR9muXKbfeoh3SWh1iB9PgufYYzSjjpQd5tdLOAcI3aqP3POvjuf3YVLO8t_Zs3oeLWeIpgd19aPcKJ75RgpltkUv6hRLLrOXQXCXcFRcxNX9B1bXQM9Akpfm5G6QcVJ2Xv3D5kaKfgGzfoRZ6u2D6k_Dk8y2CoxdJH2IYyFXwgHQ7eP-PzcTDVoquQ
+
+{
+	"title": "quepassosoooussss",
+	"imgUrl": {
+		"url": "https://res.cloudinary.com/dxpdibonp/image/upload/.",
+		"public_id": "adasdasd"
+	},
+	"description": "asdasddddd",
+	"tags": ["asdasd", "dddddd"],
+	"content": [
+		{
+			"type": "h1",
+			"children": [
+				{
+					"text": "asdasdasdasd"
+				}
+			]
+		},
+		{
+			"type": "span",
+			"children": [
+				{
+					"text": "asdasdasdasd"
+				}
+			]
+		}
+	]
+}

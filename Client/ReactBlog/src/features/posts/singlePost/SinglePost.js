@@ -53,19 +53,19 @@ export const SinglePost = () => {
   }, [blog])
 
   return (
-    <div className="bg-indigo-100 min-h-screen">
+    <div className="min-h-screen">
       <Header />
       {blog ? (
         <>
           <main className="">
-            <div className="overflow-hidden text-darkslatergray bg-indigo-100 pb-5">
+            <article className="overflow-hidden text-darkslatergray pb-5">
               <header className="mb-5 py-4 px-6 md:px-12 lg:pl-24 lg:pr-96 shadow-xl bg-main-background text-gainsboro">
                 <h2 className="text-3xl md:text-5xl font-heading">
                   {blog.title}
                 </h2>
                 <span>{date}</span>
               </header>
-              <div className="flex flex-wrap px-6 md:px-12 lg:pl-24 lg:pr-96 gap-3 text-lg md:text-2xl font-bold font-text">
+              <div className="flex flex-col px-6 md:px-12 lg:pl-24 lg:pr-96 gap-3 text-lg md:text-2xl font-bold font-text">
                 <FormattedPost post={blog.content} />
               </div>
               <ActionBar
@@ -73,7 +73,7 @@ export const SinglePost = () => {
                 className="mt-6 mb-3 flex justify-end gap-3 px-6 md:px-12 lg:pl-24 lg:pr-96"
                 id={blogId}
               />
-            </div>
+            </article>
           </main>
           <CommentForm ref={commentForm} blogId={blogId} />
           <CommentsList blogId={blogId} />

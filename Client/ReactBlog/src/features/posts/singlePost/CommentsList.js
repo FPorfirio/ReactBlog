@@ -11,7 +11,7 @@ const StatusBox = ({ isLoading, error }) => {
       {isLoading && <Spinner />}
       {error && (
         <div>
-          <Heading color="gray.500" size="md" fontFamily="Prompt" as="h3">
+          <Heading color="currentcolor" size="md" fontFamily="Prompt" as="h3">
             There are no comments yet
           </Heading>
         </div>
@@ -24,7 +24,6 @@ export const CommentsList = ({ blogId }) => {
   const cacheComments = useSelector((state) =>
     selectBlogComments(state, blogId)
   )
-  console.log(cacheComments)
   const { isLoading, error, startFetch, isMounted } = useAsync(
     fetchComments(blogId)
   )

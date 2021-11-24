@@ -7,6 +7,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      minHeight: (theme) => ({
+        ...theme('spacing'),
+      }),
       backgroundImage: (theme) => ({
         'main-texture': 'url("./assets/wallpaper-2574943_1920.png")',
         'header-background': 'url("./assets/post.svg")',
