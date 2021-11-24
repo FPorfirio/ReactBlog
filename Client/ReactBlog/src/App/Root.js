@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
-import Theme from '../common/Themes/chakrauiTheme'
+import Theme from '../common/themes/chakrauiTheme'
 import store from './store'
 import ErrorBoundary from '../common/components/ErrorBoundary'
 import { BrowserRouter as Router } from 'react-router-dom'

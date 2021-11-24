@@ -5,7 +5,7 @@ const config = require("./config");
 
 const getKey = async (header, callback) => {
   const client = jwksClient({
-    jwksUri: `${config.BASEURL}api/.well-known/jwks.json`,
+    jwksUri: `${config.BASEURL}/api/.well-known/jwks.json`,
   });
   const key = await client.getSigningKey(header.kid);
   callback(null, key.getPublicKey());
@@ -66,7 +66,7 @@ const unknownEndpoint = (request, response) => {
 
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message);
-
+  console.log(error);
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
