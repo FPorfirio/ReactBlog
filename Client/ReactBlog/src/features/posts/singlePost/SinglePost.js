@@ -9,6 +9,7 @@ import { CommentForm } from './CommentForm'
 import { ActionBar } from './ActionBar'
 import { Skeleton, SkeletonText } from '@chakra-ui/react'
 import { FormattedPost } from './FormatedPost'
+import { useTitle } from '../../../common/hooks'
 
 const BlogSkeleton = () => {
   return (
@@ -45,10 +46,11 @@ export const SinglePost = () => {
   const blog = useSelector((state) => selectBlogById(state, blogId))
   const commentForm = useRef()
   const date = new Date(blog?.createdAt).toDateString()
-
+  useTitle(blog?.title)
   useEffect(() => {
     if (!blog) {
       blogFetch()
+      return
     }
   }, [blog])
 

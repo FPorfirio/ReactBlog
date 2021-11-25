@@ -35,7 +35,7 @@ export const PostCard = ({ blog, blogImg }) => {
         fontWeight="bold"
         fontSize={{ base: 'md', sm: 'xl', lg: '2xl' }}
       >
-        Simple post explaning the stack and structure decisions in this blog
+        {blog.description}
       </Text>
       <Box gridArea="badges" className="flex flex-wrap gap-3 items-center">
         {blog.tags.map((tag, index) => (

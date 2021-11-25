@@ -40,28 +40,40 @@ export const useField = ({ type, validator }) => {
 //check authCache
 export const useRefreshToken = () => {
   const dispatch = useDispatch()
-  const interval = useRef()
   const authCache = localStorage.getItem('isAuth')
+  const refreshInterval = useRef()
   const isAuth = useSelector(selectIsAuthenticated)
 
   useEffect(() => {
-    if (authCache) {
+    if (authCache == 'true') {
       dispatch(getToken())
     }
   }, [])
 
   useEffect(() => {
-    let refreshInterval
     if (isAuth) {
-      refreshInterval = setInterval(() => {
+      refreshInterval.current = setInterval(() => {
         dispatch(getToken())
-      }, 1000 * 60 * 14)
+      }, 5000)
       return
     }
-    if (refreshInterval) {
-      clearInterval(refreshInterval)
+    clearInterval(refreshInterval.current)
+
+    return () => {
+      clearInterval(refreshInterval.current)
     }
   }, [isAuth])
+}
+
+export const useTitle = (title) => {
+  useEffect(() => {
+    const prevTitle = document.title
+    document.title = title !== undefined ? title : prevTitle
+    return () => {
+      console.log(prevTitle)
+      document.title = prevTitle
+    }
+  })
 }
 
 export const useHookWithRefCallback = () => {

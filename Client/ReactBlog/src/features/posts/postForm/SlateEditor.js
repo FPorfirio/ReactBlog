@@ -32,7 +32,7 @@ export const SlateEditor = ({ handleInput, value }) => {
   const editorRef = useRef()
   if (!editorRef.current) editorRef.current = withReact(createEditor())
   const editor = editorRef.current
-  console.log(value)
+
   return (
     <Slate editor={editor} value={value} onChange={handleInput}>
       <div className="flex flex-wrap gap-1 mb-1">
@@ -111,7 +111,6 @@ const isMarkActive = (editor, format) => {
 
 //different block elements to render in the editable component
 const Element = ({ attributes, children, element }) => {
-  console.log(element)
   switch (element.type) {
     case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>

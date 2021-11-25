@@ -46,6 +46,7 @@ blogRouter.post(
       title: body.title,
       author: body.author,
       content: body.content,
+      description: body.description,
       tags: body.tags,
       imgUrl: body.imgUrl,
       likes: [],
