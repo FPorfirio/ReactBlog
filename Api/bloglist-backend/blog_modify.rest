@@ -1,7 +1,0 @@
-POST http://localHost:3001/api/users
-Content-Type: application/json
-
-{
-	"name": "monte",
-	"password": "shitfuck"
-}
