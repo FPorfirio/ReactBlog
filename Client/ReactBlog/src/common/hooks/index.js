@@ -54,7 +54,7 @@ export const useRefreshToken = () => {
     if (isAuth) {
       refreshInterval.current = setInterval(() => {
         dispatch(getToken())
-      }, 5000)
+      }, 1000 * 60 * 14)
       return
     }
     clearInterval(refreshInterval.current)
