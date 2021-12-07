@@ -70,7 +70,6 @@ export const useTitle = (title) => {
     const prevTitle = document.title
     document.title = title !== undefined ? title : prevTitle
     return () => {
-      console.log(prevTitle)
       document.title = prevTitle
     }
   })

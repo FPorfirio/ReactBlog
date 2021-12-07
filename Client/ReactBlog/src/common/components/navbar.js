@@ -21,7 +21,7 @@ const Navbar = ({ className }) => {
               as={RouterLink}
               to="/"
             >
-              <span>Blogs</span>
+              <span>Home</span>
             </Link>
           </li>
           {isAuthenticated && (
